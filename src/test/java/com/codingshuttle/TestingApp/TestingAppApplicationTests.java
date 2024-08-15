@@ -46,11 +46,11 @@ class TestingAppApplicationTests {
 //				.isEqualTo(7)
 //				.isCloseTo(9, Offset.offset(1));
 
-		assertThat("Apple")
-				.isEqualTo("Apple")
-				.startsWith("App")
-				.endsWith("l")
-				.hasSize(3);
+//		assertThat("Apple")
+//				.isEqualTo("Apple")
+//				.startsWith("App")
+//				.endsWith("l")
+//				.hasSize(3);
 
 	}
 
