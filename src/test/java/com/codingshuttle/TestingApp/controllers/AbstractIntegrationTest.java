@@ -20,7 +20,7 @@ public class AbstractIntegrationTest {
     Employee testEmployee = Employee.builder()
             .id(1L)
                 .email("anuj@gmail.com")
-                .name("Anuj")
+                .fullName("Anuj")
                 .salary(200L)
                 .build();
     EmployeeDto testEmployeeDto = EmployeeDto.builder()

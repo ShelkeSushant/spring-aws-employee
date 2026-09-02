@@ -29,7 +29,7 @@ class EmployeeRepositoryTest {
     void setUp() {
         employee = Employee.builder()
                 .id(1L)
-                .name("Anuj")
+                .fullName("Anuj")
                 .email("anuj@gmail.com")
                 .salary(100L)
                 .build();

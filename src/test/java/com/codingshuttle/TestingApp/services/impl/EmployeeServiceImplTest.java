@@ -1,11 +1,9 @@
 package com.codingshuttle.TestingApp.services.impl;
 
-import com.codingshuttle.TestingApp.TestContainerConfiguration;
 import com.codingshuttle.TestingApp.dto.EmployeeDto;
 import com.codingshuttle.TestingApp.entities.Employee;
 import com.codingshuttle.TestingApp.exceptions.ResourceNotFoundException;
 import com.codingshuttle.TestingApp.repositories.EmployeeRepository;
-import com.codingshuttle.TestingApp.services.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,21 +13,13 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(TestContainerConfiguration.class)
 @ExtendWith(MockitoExtension.class)
 class EmployeeServiceImplTest {
 
@@ -47,10 +37,15 @@ class EmployeeServiceImplTest {
 
     @BeforeEach
     void setUp() {
+        modelMapper.typeMap(Employee.class, EmployeeDto.class)
+                .addMapping(Employee::getFullName, EmployeeDto::setName);
+        modelMapper.typeMap(EmployeeDto.class, Employee.class)
+                .addMapping(EmployeeDto::getName, Employee::setFullName);
+
         mockEmployee = Employee.builder()
                 .id(1L)
                 .email("anuj@gmail.com")
-                .name("Anuj")
+                .fullName("Anuj")
                 .salary(200L)
                 .build();
 
