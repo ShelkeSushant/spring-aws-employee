@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    TESTCONTAINERS_RYUK_DISABLED: "true"
+
 phases:
   install:
     runtime-versions:
@@ -10,6 +14,8 @@ phases:
     commands:
       - echo Logging in to Docker hub
       - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      - docker info
+      - docker pull postgres:latest
   build:
     commands:
       - echo Building, Testing and packaging the application...
